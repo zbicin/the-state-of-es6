@@ -15,6 +15,13 @@
             max-width: 100%;
             max-height: 100%;
         }
+        .no-margins {
+            padding: 0;
+        }
+
+        .no-margins p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -22,6 +29,8 @@
         class: middle, center
 
         # The state of ES6
+
+        ## Can we use it yet?
 
         Krzysztof Zbiciński  
         _k.zbicinski@gmail.com_  
@@ -70,11 +79,21 @@
 
          # History
 
-         * ES3
+         * ES1 (Published in June 1997)
 
-         * ES5
+         * ES2 (June 1998)
 
-         * ES6 (now)
+         * ES3 (December 1999)
+
+         * ES4 (abandoned)
+
+         * ES5 (December 2009)
+
+         * ES5.1 (June 2011)
+
+         * ES6 (ES2015, June 2015)
+
+         * ES7  (ES2016, June 2016)
 
         ---
 
@@ -104,6 +123,54 @@
 
         ---
 
+        class: middle, center
+
+        ## Great, but
+
+        # can we use it yet?
+
+        ---
+
+        name: yes-we-can
+
+        class: middle, center, no-margins
+
+        ![Yes we can](assets/images/yes-we-can.jpg)  
+        *http://bcgavel.com/wp-content/uploads/2015/04/tumblr_md3p0xrgqy1r0z99do1_500.jpg*
+
+        ---
+
+        name: but
+
+        class: middle, center
+
+        ## but
+
+        ---
+
+        class: middle, center, no-margins
+
+        ![Nope](assets/images/nope.jpg)  
+        *http://foleycreekdesign.com/wp-content/uploads/2016/01/nope.jpg*
+
+        ---
+
+        # Compatibility
+
+        * Implementations are still not perfect:
+
+            * Node 6.5 - 97%
+
+            * Chrome 56 - 97%
+
+            * Firefox 52 - 94%
+
+            * Edge 14 - 93%
+
+        * Missing e.g. modules syntax (`import` and `export`).
+         
+        ---
+
         # Compatibility
 
         * http://kangax.github.io/compat-table/es6/
@@ -112,21 +179,63 @@
 
         ---
         
-        ![ES6 Compatibility table](assets/images/es6-compat-table.png)
-        
-        ---
 
         # Transpilers to the rescue
 
+
+        * Babel (https://babeljs.io/)
+
+        * Traceur (https://github.com/google/traceur-compiler)
+
         ---
 
-        # ES7, 8, 9...
+        class: middle, center, no-margins
 
-        * standarized naming convention
+        ![Babel REPL](assets/images/babel-repl.png)  
+        *https://babeljs.io/repl*
+
 
         ---
 
-        # TypeScript, Dart, Clojure, CoffeScript
+        class: middle, center
+
+        # Great, so can we use transpilers and everything will be fine?
+
+        ---
+
+        template: yes-we-can
+
+        ---
+
+        template: but
+
+        ---
+
+        template: but
+
+        # something _may_ not be fine.
+
+        ---
+
+        # Transpilers - disadvantages
+
+        * usually an additional step of build process
+
+        * debugging issues if sourcemaps are not configured properly
+
+        * potential slight performance loss (if any)
+
+        ---
+
+        # Languages compiled to JavaScript
+        
+        * TypeScript (https://www.typescriptlang.org/)
+
+        * Dart (https://www.dartlang.org/)
+
+        * Clojure (http://clojure.org/)
+
+        * CoffeScript (http://coffeescript.org/)
 
         ---
 
