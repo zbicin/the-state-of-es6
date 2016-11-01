@@ -168,7 +168,36 @@
             * Edge 14 - 93%
 
         * Missing e.g. modules syntax (`import` and `export`).
-         
+
+        ---
+
+        ```bash
+        $ node -v
+        v7.0.0
+        
+        $ cat a.js
+        export let a = 'a';
+
+        $ cat b.js
+        import { a } from './a';
+        
+        $ node b.js 
+        /tmp/b.js:2
+        import { a } from './a';
+        ^^^^^^
+        SyntaxError: Unexpected token import
+            at Object.exports.runInThisContext (vm.js:76:16)
+            at Module._compile (module.js:545:28)
+            at Object.Module._extensions..js (module.js:582:10)
+            at Module.load (module.js:490:32)
+            at tryModuleLoad (module.js:449:12)
+            at Function.Module._load (module.js:441:3)
+            at Module.runMain (module.js:607:10)
+            at run (bootstrap_node.js:382:7)
+            at startup (bootstrap_node.js:137:9)
+            at bootstrap_node.js:497:3
+        ```
+
         ---
 
         # Compatibility
@@ -179,21 +208,39 @@
 
         ---
         
-
         # Transpilers to the rescue
 
+        * Transpilers take the ES6 code as an input and transform it into ES5 code which works 100% the same way and is supported by most environments.
+
+        * ES6 code ➔ magic ➔ ES5 code
+
+        ---
+
+        ```sh
+        $ ls
+        es6.js  node_modules  package.json
+        
+        $ cat es6.js 
+        let a = 'a';
+        
+        $ ./node_modules/.bin/babel es6.js -o es5.js
+        
+        $ ls
+        es5.js  es6.js  node_modules  package.json
+        
+        $ cat es5.js 
+        'use strict';
+
+        var a = 'a';
+        ```
+
+        ---
+
+        # Transpilers to the rescue  
 
         * Babel (https://babeljs.io/)
 
         * Traceur (https://github.com/google/traceur-compiler)
-
-        ---
-
-        class: middle, center, no-margins
-
-        ![Babel REPL](assets/images/babel-repl.png)  
-        *https://babeljs.io/repl*
-
 
         ---
 
@@ -226,6 +273,18 @@
         * potential slight performance loss (if any)
 
         ---
+
+        class: middle, center, no-margins
+
+        ![Babel REPL](assets/images/babel-repl.png)  
+        *https://babeljs.io/repl*
+
+        ---
+
+        # Babel's Require Hook
+
+        ---
+        
 
         # Languages compiled to JavaScript
         
