@@ -62,22 +62,24 @@
 
         ---
 
-        # History
+        # Why 'ECMAScript'?
 
-        * Mocha > LiveScript > JavaScript - Netscape
+        * Mocha ➔ LiveScript ➔ JavaScript - Netscape
         * JScript - Microsoft
 
-        * ECMAScript 
-
-        .center[
-        *ECMAScript was always an unwanted trade name that sounds like a skin disease.*  
-        Brendan Eich  
-        https://mail.mozilla.org/pipermail/es-discuss/2006-October/000133.html
-        ]
+        * ECMAScript - Ecma International (former European Computer Manufacturers Association)
 
         ---
 
-         # History
+        class: center, middle
+
+        *ECMAScript was always an unwanted trade name that sounds like a skin disease.*  
+        Brendan Eich  
+        *https://mail.mozilla.org/pipermail/es-discuss/2006-October/000133.html*
+
+        ---
+
+         # Versioning
 
          * ES1 (Published in June 1997)
 
@@ -174,13 +176,20 @@
         ```bash
         $ node -v
         v7.0.0
-        
-        $ cat a.js
-        export let a = 'a';
+        ```
 
-        $ cat b.js
+        ```js
+        // a.js
+        export let a = 'a';
+        ```
+
+        ```js
+        // b.js
         import { a } from './a';
-        
+        console.log(a);
+        ```
+
+        ```bash
         $ node b.js 
         /tmp/b.js:2
         import { a } from './a';
@@ -216,22 +225,33 @@
 
         ---
 
-        ```sh
+        ```bash
         $ ls
-        es6.js  node_modules  package.json
-        
-        $ cat es6.js 
-        let a = 'a';
-        
-        $ ./node_modules/.bin/babel es6.js -o es5.js
-        
+        a.es6.js  node_modules  package.json
+        ```
+
+        ```js
+        // a.es6.js 
+        export let a = 'a';
+        ```
+
+        ```bash
+        $ ./node_modules/.bin/babel a.es6.js -o a.es5.js
+        ```
+
+        ```bash
         $ ls
-        es5.js  es6.js  node_modules  package.json
-        
-        $ cat es5.js 
+        a.es5.js  a.es6.js  node_modules  package.json
+        ```
+
+        ```js
+        // a.es5.js 
         'use strict';
 
-        var a = 'a';
+        Object.defineProperty(exports, "__esModule", {
+          value: true
+        });
+        var a = exports.a = 'a';
         ```
 
         ---
@@ -274,6 +294,18 @@
 
         ---
 
+        # Transpilers - how to begin?
+
+        The easiest way to start playing with ES6 are:
+
+        * Babel REPL - https://babel.io/repl
+
+        * Babel Require Hook
+
+        * `babel-node`
+
+        ---
+
         class: middle, center, no-margins
 
         ![Babel REPL](assets/images/babel-repl.png)  
@@ -283,8 +315,61 @@
 
         # Babel's Require Hook
 
+        ```bash
+        $ npm install --save-dev babel-register babel-preset-es2015
+        $ npm install --save-dev babel-polyfill
+        ```
+
+        ```js
+        // .babelrc
+        { "presets": ["es2015"]}
+        ```
+
+        Then, at the top of our main `.js` file:
+
+        ```js
+        // main.js
+        require('babel/register');
+        require('./src/app.js');
+        ```
+
+        Thanks to this, all of the further dependencies are transpiled on the fly:
+
+        ```js
+        // src/app.js
+        import 'foo' from 'bar'; // works!
+
+        let baz = () => Math.random(); // works!
+        ```
+
         ---
         
+        # `babel-node`
+
+        ```js
+        // a.js
+        export let a = 'a';
+        ```
+
+        ```js
+        // b.js
+        import { a } from './a';
+        console.log(a);
+        ```
+
+        ```js
+        // .babelrc
+        { "presets": ["es2015"] }
+        ```
+
+        ```bash
+        $ npm install babel-cli
+        # npm pretending it's busy
+        $ ./node_modules/.bin/babel-node b.js
+        a # works! 
+        ```
+
+        ---
 
         # Languages compiled to JavaScript
         
