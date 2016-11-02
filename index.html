@@ -5,11 +5,12 @@
     <title>The state of ES6</title>
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
-
         body {
             background: #d7d8d2;
             font-family: 'Droid Serif', serif;
+        }
+        a {
+            color: #25a5f5;
         }
         textarea {
             display: none;
@@ -17,6 +18,14 @@
 
         .remark-slide-content h1 { 
             font-size: 48px;
+        }
+
+        .remark-slide-content h2,
+        .remark-slide-content h3 {
+            color: #52646f;            
+        }
+        .remark-slide-content h2{
+            font-size: 35px;
         }
 
         img {
@@ -30,22 +39,52 @@
         .no-margins p {
             margin: 0;
         }
+
+        .remark-slide>.title-only {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .remark-slide>.inverted {
+            background-color: #1e1e1e;
+            color: #eee;
+        }
+
+        .remark-slide>.inverted a {
+            color: #174e71;
+        }
+
+        .remark-slide>.inverted.remark-slide-content h2, 
+        .remark-slide>.inverted.remark-slide-content h3 {
+            color: #406073;
+        }
+
+        .border {
+            border: 10px solid #25a5f5;
+            margin: 60px auto;
+        }
     </style>
 </head>
 <body>
     <textarea id="source">
-        class: middle, center
+        class: title-only
 
         # The state of ES6
 
         ## Can we use it yet?
 
-        Krzysztof Zbiciński  
+        Krzysztof Zbicinski  
         _k.zbicinski@gmail.com_  
         _@zbicin_  
         _http://zbic.in_
 
         ---
+
+        # History
+
+        ---
+
+        count: false
 
         # History 
 
@@ -68,16 +107,33 @@
 
         ---
 
-        # Why 'ECMAScript'?
+        name: history-names
+        count: false
+
+        # History
 
         * Mocha ➔ LiveScript ➔ JavaScript - Netscape
         * JScript - Microsoft
 
+        ---
+
+        class: title-only, inverted
+        count: false
+
+        # Why 'ECMAScript'?
+
+        ---
+
+        template: history-names
+        count: false
+
+  
         * ECMAScript - Ecma International (former European Computer Manufacturers Association)
 
         ---
 
         class: center, middle
+        count: false
 
         *ECMAScript was always an unwanted trade name that sounds like a skin disease.*  
         Brendan Eich  
@@ -131,7 +187,7 @@
 
         ---
 
-        class: middle, center
+        class: title-only, inverted
 
         ## Great, but
 
@@ -140,8 +196,8 @@
         ---
 
         name: yes-we-can
-
-        class: middle, center, no-margins
+        count: false
+        class: title-only, inverted, no-margins
 
         ![Yes we can](assets/images/yes-we-can.jpg)  
         *http://bcgavel.com/wp-content/uploads/2015/04/tumblr_md3p0xrgqy1r0z99do1_500.jpg*
@@ -149,20 +205,27 @@
         ---
 
         name: but
-
-        class: middle, center
+        count: false
+        class: title-only, inverted
 
         ## but
 
         ---
 
-        class: middle, center, no-margins
+        class: title-only, inverted, no-margins
+        count: false
 
         ![Nope](assets/images/nope.jpg)  
         *http://foleycreekdesign.com/wp-content/uploads/2016/01/nope.jpg*
 
         ---
 
+        # Compatibility
+
+        ---
+
+        count: false
+        
         # Compatibility
 
         * Implementations are still not perfect:
@@ -179,21 +242,41 @@
 
         ---
 
+        count: false
+        name: broken-imports-0
+
         ```bash
         $ node -v
         v7.0.0
         ```
+
+        ---
+
+        count: false
+        template: broken-imports-0
+        name: broken-imports-1
 
         ```js
         // a.js
         export let a = 'a';
         ```
 
+        ---
+
+        count: false
+        template: broken-imports-1
+        name: broken-imports-2
+
         ```js
         // b.js
         import { a } from './a';
         console.log(a);
         ```
+
+        ---
+
+        count: false
+        template: broken-imports-2
 
         ```bash
         $ node b.js 
@@ -215,6 +298,7 @@
 
         ---
 
+        count: false
         # Compatibility
 
         * http://kangax.github.io/compat-table/es6/
@@ -222,7 +306,23 @@
         * http://node.green/
 
         ---
+
+        class: title-only, inverted
+
+        ## Implementations are not complete.
+
+        # What now?
+
+        ---
+
+        class: title-only, inverted
+
+        # Transpilers to the rescue!
+
+        ---
         
+        count: false
+
         # Transpilers to the rescue
 
         * Transpilers take the ES6 code as an input and transform it into ES5 code which works 100% the same way and is supported by most environments.
@@ -231,24 +331,29 @@
 
         ---
 
-        ```bash
-        $ ls
-        a.es6.js  node_modules  package.json
-        ```
+        count: false
+        name: transpilers-rescue-0
 
         ```js
         // a.es6.js 
         export let a = 'a';
         ```
 
+        ---
+
+        count: false
+        template: transpilers-rescue-0
+        name: transpilers-rescue-1
+
         ```bash
         $ ./node_modules/.bin/babel a.es6.js -o a.es5.js
         ```
 
-        ```bash
-        $ ls
-        a.es5.js  a.es6.js  node_modules  package.json
-        ```
+        ---
+
+        count: false
+        template: transpilers-rescue-1
+        name: transpilers-rescue-2
 
         ```js
         // a.es5.js 
@@ -262,6 +367,8 @@
 
         ---
 
+        count: false
+
         # Transpilers to the rescue  
 
         * Babel (https://babeljs.io/)
@@ -270,7 +377,7 @@
 
         ---
 
-        class: middle, center
+        class: title-only, inverted
 
         ### Great, so can we use transpilers and 
         
@@ -278,60 +385,117 @@
 
         ---
 
+        count: false
         template: yes-we-can
 
         ---
 
+        count: false
         template: but
 
         ---
 
+        count: false
         template: but
 
         # something _may_ not be fine.
 
         ---
 
+        name: transpilers-disadvantages-0
+
         # Transpilers - disadvantages
-
-        * usually an additional step of build process
-
-        * debugging issues if sourcemaps are not configured properly
-
-        * potential slight performance loss (if any)
 
         ---
 
+        count: false
+        template: transpilers-disadvantages-0
+        name: transpilers-disadvantages-1
+
+        * Usually an additional step of build process.
+
+        ---
+
+        count: false
+        template: transpilers-disadvantages-1
+        name: transpilers-disadvantages-2
+
+        * Debugging issues if sourcemaps are not configured properly.
+
+        ---
+
+        count: false
+        template: transpilers-disadvantages-2
+        name: transpilers-disadvantages-3
+
+        * Potential slight performance loss (if any).
+
+        ---
+
+        count: false
+        class: title-only, inverted
+
+        # Nevertheless, transpilers are awesome.
+
+        ---
+
+        name: transpilers-0
+
         # Transpilers - how to begin?
+        
+        ---
+
+        count: false
+        template: transpilers-0
+        name: transpilers-1
 
         The easiest way to start playing with ES6 are:
 
         * Babel REPL - https://babel.io/repl
 
-        * Babel Require Hook
-
-        * `babel-node`
-
         ---
 
-        class: middle, center, no-margins
+        count: false
+        class: title-only, no-margins
 
         ![Babel REPL](assets/images/babel-repl.png)  
         *https://babeljs.io/repl*
 
         ---
 
+        count: false
+        template: transpilers-1
+        name: transpilers-2
+
+        * Babel Require Hook
+
+        ---
+
+        count: false
+        name: babel-require-0
+
         # Babel's Require Hook
 
         ```bash
-        $ npm install --save-dev babel-register babel-preset-es2015
-        $ npm install --save-dev babel-polyfill
+        $ npm install --save-dev babel-register babel-polyfill
+        $ npm install --save-dev babel-preset-es2015
         ```
+
+        ---
+
+        count: false
+        template: babel-require-0
+        name: babel-require-1
 
         ```js
         // .babelrc
         { "presets": ["es2015"]}
         ```
+        ---
+
+        count: false
+        template: babel-require-1
+        name: babel-require-2
 
         Then, at the top of our main `.js` file:
 
@@ -340,8 +504,11 @@
         require('babel/register');
         require('./src/app.js');
         ```
+        ---
 
-        Thanks to this, all of the further dependencies are transpiled on the fly:
+        count: false
+        template: babel-require-2
+        name: babel-require-3
 
         ```js
         // src/app.js
@@ -349,37 +516,79 @@
 
         let baz = () => Math.random(); // works!
         ```
+        ---
+
+        count: false
+        template: babel-require-3
+        name: babel-require-4
+
+        ```bash
+        $ node main.js # works!
+        ```
 
         ---
         
+        count: false
+        template: transpilers-2
+
+        * `babel-node`        
+
+        ---
+        
+        count: false
+        name: babel-node-0
+
         # `babel-node`
+
+        ```bash
+        $ npm install --save-dev babel-cli babel-preset-es2015
+        ```
+
+        ---
+
+        count: false
+        template: babel-node-0
+        name: babel-node-1
 
         ```js
         // a.js
         export let a = 'a';
         ```
+        ---
+
+        count: false
+        template: babel-node-1
+        name: babel-node-2
 
         ```js
         // b.js
         import { a } from './a';
         console.log(a);
         ```
+        ---
+
+        count: false
+        template: babel-node-2
+        name: babel-node-3
 
         ```js
         // .babelrc
         { "presets": ["es2015"] }
         ```
+        ---
+
+        count: false
+        template: babel-node-3
+        name: babel-node-4
 
         ```bash
-        $ npm install babel-cli
-        # npm pretending it's busy
         $ ./node_modules/.bin/babel-node b.js
         a # works! 
         ```
 
         ---
 
-        # Languages compiled to JavaScript
+        # Bonus: Languages compiled to JavaScript
         
         * TypeScript (https://www.typescriptlang.org/)
 
@@ -391,9 +600,14 @@
 
         ---
 
-        class: middle, center
+        class: title-only, inverted
 
         # Thanks! 
+
+        Krzysztof Zbicinski  
+        _k.zbicinski@gmail.com_  
+        _@zbicin_  
+        _http://zbic.in_
 
     </textarea>
     <script src="assets/remark.min.js" type="text/javascript"></script>
